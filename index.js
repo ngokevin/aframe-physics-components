@@ -86,6 +86,14 @@ var bodyComponent = {
     if (!this.world) { return; }
   },
 
+  applyImpulse: function (forceVec3, pointVec3) {
+    pointVec3 = pointVec3 || { x: 0, y: 0, z: 0 };
+    this.body.applyImpulse(
+      new CANNON.Vec3(forceVec3.x, forceVec3.y, forceVec3.z),
+      new CANNON.Vec3(pointVec3.x, pointVec3.y, pointVec3.z)
+    );
+  },
+
   getBody: function (el, data) {
     var boundingBox = data.boundingBox;
     var position = el.getAttribute('position');
