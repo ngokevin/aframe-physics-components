@@ -67,7 +67,7 @@ Applies an impulse (indicated by `impulseVec3`) at the body's local point
 (indicated by `positionVec3`). `forceVec3` is in Force / Time (Newtons /
 Seconds).
 
-```
+```js
 // Applies a small force from left-to-right to the top-left of the body.
 var hitMeBody = document.querySelector('#hit-me-entity').components['physics-body'];
 hitMeBody.applyImpulse({ x: 10, y: 0, z: 0 }, { x: -1, y: 1, z: 0 });
