@@ -2,6 +2,8 @@
 
 > Currently depends on aframe-core#dev
 
+> Under development
+
 Physics components for [A-Frame](https://aframe.io) VR using [cannon.js](http://schteppe.github.io/cannon.js/).
 
 ### Usage
