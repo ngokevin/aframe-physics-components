@@ -49,9 +49,10 @@ Object.keys(components).forEach(function (componentName) {
 
 #### physics-body Component
 
-| Property | Description | Default Value |
-| -------- | ----------- | ------------- |
-| mass     | (in kg)     | 1             |
+| Property    | Description           | Type | Default Value |
+| --------    | -----------           | ---- | ------------- |
+| boundingBox | Collision box (in m). | vec3 | 0 0 0         |
+| mass        | (in kg)               | 1    |               |
 
 #### physics-world Component
 

@@ -1,4 +1,5 @@
 var CANNON = require('cannon');
+var coordinates = require('aframe-core').utils.coordinates;  // TODO: require('aframe').
 
 // CANNON.World component.
 var worldComponent = {
@@ -43,6 +44,9 @@ var bodyComponent = {
   dependencies: ['position'],
 
   schema: {
+    boundingBox: {
+      type: 'vec3'
+    },
     mass: {
       type: 'int',
       default: 1
@@ -63,18 +67,34 @@ var bodyComponent = {
       if (!('physics-world' in sceneEl.components)) {
         console.warn('physics-world must be specified on scene for physics to work.');
       }
-
       var world = self.world = sceneEl.components['physics-world'].world;
-
-      var position = self.el.getAttribute('position');
-      var body = self.body = new CANNON.Body({
-        mass: self.data.mass,
-        position: new CANNON.Vec3(position.x, position.y, position.z),
-        shape: new CANNON.Sphere(1)  // TODO: IMPORT SHAPE FROM GEOMETRY.
-      });
-      body.aframeUpdate = self.worldTickBehavior;
+      var body = self.body = self.getBody(self.el, self.data);
       world.add(body);
     });
+  },
+
+  update: function () {
+    if (!this.world) { return; }
+  },
+
+  getBody: function (el, data) {
+    var boundingBox = data.boundingBox;
+    var position = el.getAttribute('position');
+
+    var bodyProperties = {
+      mass: data.mass,
+      position: new CANNON.Vec3(position.x, position.y, position.z)
+    };
+
+    if (boundingBox !== undefined) {
+      bodyProperties.shape = new CANNON.Box(
+        new CANNON.Vec3(boundingBox.x, boundingBox.y, boundingBox.z)
+      );
+    }
+
+    body = new CANNON.Body(bodyProperties);
+    body.aframeUpdate = this.worldTickBehavior;
+    return body;
   },
 
   /**

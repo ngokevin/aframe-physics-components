@@ -5,11 +5,11 @@
   <body>
     <a-scene physics-world="">
       <a-entity geometry="primitive: box" material="color: #166678"
-                physics-body="mass: 5" position="0 10 -10"></a-entity>
+                physics-body="mass: 5; boundingBox: 1 1 1" position="0 10 -10"></a-entity>
 
       <a-entity geometry="primitive: box; depth: 10; height: 0.1; width: 10"
                 material="color: #2E3837"
-                physics-body="mass: 0" position="0 0 -10"></a-entity>
+                physics-body="mass: 0; boundingBox: 10 0.1 10" position="0 0 -10"></a-entity>
     </a-scene>
   </body>
 </html>
