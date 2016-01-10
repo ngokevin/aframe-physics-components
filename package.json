@@ -1,6 +1,6 @@
 {
   "name": "aframe-physics-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Physics components for A-Frame VR.",
   "main": "index.js",
   "scripts": {
