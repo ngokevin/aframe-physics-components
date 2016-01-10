@@ -1,5 +1,5 @@
 var CANNON = require('cannon');
-var coordinates = require('aframe-core').utils.coordinates;  // TODO: require('aframe').
+var coordinates = AFRAME.utils.coordinates;  // TODO: require('aframe').
 
 var rad = THREE.Math.degToRad;
 var deg = THREE.Math.radToDeg;
