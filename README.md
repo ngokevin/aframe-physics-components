@@ -14,7 +14,7 @@ Install and use by directly including the [browser files](dist):
 <head>
   <title>My A-Frame Scene</title>
   <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
-  <script src="https://github.com/ngokevin/aframe-physics-components/blob/master/dist/aframe-physics-component.min.js"></script>
+  <script src="https://github.com/ngokevin/aframe-physics-components/blob/master/dist/aframe-physics-components.min.js"></script>
 </head>
 
 <body>
