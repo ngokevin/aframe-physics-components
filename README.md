@@ -1,6 +1,7 @@
 ## aframe-physics-components
 
 > Currently depends on pending changes `aframe-core`.
+> https://github.com/ngokevin/aframe-core/tree/physicswip
 
 Physics components for [A-Frame](https://aframe.io) VR using [cannon.js](http://schteppe.github.io/cannon.js/).
 
