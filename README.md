@@ -18,8 +18,8 @@ Install and use by directly including the [browser files](dist):
 </head>
 
 <body>
-  <a-scene>
-    <a-entity physics-body="mass: 5"></a-entity>
+  <a-scene physics-world="gravity: 0 -9.8 0">
+    <a-entity physics-body="mass: 5" geometry="primitive: box" material="color: red"></a-entity>
   </a-scene>
 </body>
 ```
@@ -36,10 +36,23 @@ Then register and use.
 
 ```js
 var AFRAME = require('aframe-core');
-var physicsComponent = require('aframe-physics-components').physicsBodyComponent;
-AFRAME.registerComponent('physics-body', physicsBody);
+var components = require('aframe-physics-components').components;
+
+Object.keys(components).forEach(function (componentName) {
+  AFRAME.registerComponent(componentName, components[componentName]);
+});
 ```
+
+### API
+
+#### physics-body Component
 
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
-|          |             |               |
+| mass     | (in kg)     | 1             |
+
+#### physics-world Component
+
+| Property | Description | Default Value |
+| -------- | ----------- | ------------- |
+| gravity  | vec3        | 0 -9.8 0      |
