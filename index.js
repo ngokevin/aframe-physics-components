@@ -97,7 +97,8 @@ var bodyComponent = {
                                        rad(angularVelocity.z)),
       mass: data.mass,
       position: new CANNON.Vec3(position.x, position.y, position.z),
-      shape: new CANNON.Box(new CANNON.Vec3(boundingBox.x, boundingBox.y, boundingBox.z)),
+      shape: new CANNON.Box(new CANNON.Vec3(boundingBox.x / 2, boundingBox.y / 2,
+                                            boundingBox.z / 2)),
       velocity: new CANNON.Vec3(velocity.x, velocity.y, velocity.z)
     };
 
