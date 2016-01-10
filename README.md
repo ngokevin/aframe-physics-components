@@ -50,11 +50,12 @@ Object.keys(components).forEach(function (componentName) {
 
 #### physics-body Component
 
-| Property    | Description           | Type | Default Value |
-| --------    | -----------           | ---- | ------------- |
-| boundingBox | Collision box (in m). | vec3 | 0 0 0         |
-| mass        | (in kg)               | 1    |               |
-| velocity    | (in m/s)              | vec3 | 0 0 0         |
+| Property        | Description           | Type   | Default Value |
+| --------        | -----------           | ----   | ------------- |
+| angularVelocity | (in deg/s)            | vec3   | 0 0 0         |
+| boundingBox     | Collision box (in m). | vec3   | 0 0 0         |
+| mass            | (in kg)               | number | 1             |
+| velocity        | (in m/s)              | vec3   | 0 0 0         |
 
 #### physics-world Component
 
