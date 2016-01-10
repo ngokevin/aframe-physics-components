@@ -11,7 +11,19 @@ var worldComponent = {
   },
 
   init: function () {
-    this.world = new CANNON.World();
+    var self = this;
+    var world = this.world = new CANNON.World();
+
+    var fixedTimeStep = 1.0 / 60.0;
+    var maxSubSteps = 3;
+
+    this.el.addBehavior(function (time) {
+      if (self.lastTime !== undefined){
+       var timeChange  = (time - self.lastTime) / 1000;
+       world.step(fixedTimeStep, timeChange, maxSubSteps);
+      }
+      self.lastTime = time;
+    });
   },
 
   update: function (oldData) {
@@ -32,15 +44,20 @@ var bodyComponent = {
   },
 
   init: function () {
-    var world = this.world = this.el.sceneEl.components.physics.world;
-    var position = this.el.getAttribute('position');
-    var body = this.body = new CANNON.Body({
-      position: new CANNON.Vec3(position.x, position.y, position.z)
+    var self = this;
+
+    this.el.sceneEl.addEventListener('loaded', function () {
+      var world = self.world = self.el.sceneEl.components['physics-world'].world;
+      var position = self.el.getAttribute('position');
+      var body = self.body = new CANNON.Body({
+        position: new CANNON.Vec3(position.x, position.y, position.z)
+      });
+      world.add(body);
     });
-    world.add(body);
   },
 
   update: function (oldData) {
+    if (!this.world) { return; }
     var body = this.body;
     var object3D = this.el.object3D;
     body.position.copy(object3D.position);
