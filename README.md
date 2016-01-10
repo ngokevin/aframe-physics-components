@@ -21,7 +21,8 @@ Install and use by directly including the [browser files](dist):
 
 <body>
   <a-scene physics-world="gravity: 0 -9.8 0">
-    <a-entity physics-body="mass: 5" geometry="primitive: box" material="color: red"></a-entity>
+    <a-entity physics-body="boundingBox: 1 1 1; mass: 5; velocity: 0.2 0 0"
+              geometry="primitive: box" material="color: red"></a-entity>
   </a-scene>
 </body>
 ```
@@ -53,6 +54,7 @@ Object.keys(components).forEach(function (componentName) {
 | --------    | -----------           | ---- | ------------- |
 | boundingBox | Collision box (in m). | vec3 | 0 0 0         |
 | mass        | (in kg)               | 1    |               |
+| velocity    | (in m/s)              | vec3 | 0 0 0         |
 
 #### physics-world Component
 

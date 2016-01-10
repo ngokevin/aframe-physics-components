@@ -50,6 +50,9 @@ var bodyComponent = {
     mass: {
       type: 'int',
       default: 1
+    },
+    velocity: {
+      type: 'vec3'
     }
   },
 
@@ -80,17 +83,14 @@ var bodyComponent = {
   getBody: function (el, data) {
     var boundingBox = data.boundingBox;
     var position = el.getAttribute('position');
+    var velocity = data.velocity;
 
     var bodyProperties = {
       mass: data.mass,
-      position: new CANNON.Vec3(position.x, position.y, position.z)
+      position: new CANNON.Vec3(position.x, position.y, position.z),
+      shape: new CANNON.Box(new CANNON.Vec3(boundingBox.x, boundingBox.y, boundingBox.z)),
+      velocity: new CANNON.Vec3(velocity.x, velocity.y, velocity.z)
     };
-
-    if (boundingBox !== undefined) {
-      bodyProperties.shape = new CANNON.Box(
-        new CANNON.Vec3(boundingBox.x, boundingBox.y, boundingBox.z)
-      );
-    }
 
     body = new CANNON.Body(bodyProperties);
     body.aframeUpdate = this.worldTickBehavior;
