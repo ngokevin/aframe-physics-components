@@ -6,8 +6,7 @@
   }
 
   // Register all components here.
-  var components = {};
-  components['physics-body'] = require('./index').bodyComponent;
+  var components = require('./index').components;
 
   Object.keys(components).forEach(function (name) {
     if (AFRAME.aframeCore) {

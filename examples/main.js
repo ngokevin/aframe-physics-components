@@ -1,3 +1,6 @@
 var AFRAME = require('aframe-core');
-var bodyComponent = require('../index.js').bodyComponent;
-AFRAME.registerComponent('physics-body', bodyComponent);
+var components = require('../index.js').components;
+
+Object.keys(components).forEach(function (componentName) {
+  AFRAME.registerComponent(componentName, components[componentName]);
+});

@@ -1,5 +1,7 @@
 ## aframe-physics-components
 
+> Currently depends on aframe-core#dev
+
 Physics components for [A-Frame](https://aframe.io) VR using [cannon.js](http://schteppe.github.io/cannon.js/).
 
 ### Usage
@@ -17,7 +19,7 @@ Install and use by directly including the [browser files](dist):
 
 <body>
   <a-scene>
-    <a-entity physics="weight: 5"></a-entity>
+    <a-entity physics-body="mass: 5"></a-entity>
   </a-scene>
 </body>
 ```
@@ -34,8 +36,8 @@ Then register and use.
 
 ```js
 var AFRAME = require('aframe-core');
-var physicsComponent = require('aframe-example-component').component;
-AFRAME.registerComponent('example', exampleComponent);
+var physicsComponent = require('aframe-physics-components').physicsBodyComponent;
+AFRAME.registerComponent('physics-body', physicsBody);
 ```
 
 | Property | Description | Default Value |
