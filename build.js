@@ -10,6 +10,9 @@ Object.keys(components).forEach(function (componentName) {
 var CANNON = require('cannon');
 var coordinates = require('aframe-core').utils.coordinates;  // TODO: require('aframe').
 
+var rad = THREE.Math.degToRad;
+var deg = THREE.Math.radToDeg;
+
 // CANNON.World component.
 var worldComponent = {
   schema: {
@@ -53,6 +56,9 @@ var bodyComponent = {
   dependencies: ['position'],
 
   schema: {
+    angularVelocity: {
+      type: 'vec3'
+    },
     boundingBox: {
       type: 'vec3'
     },
@@ -92,9 +98,12 @@ var bodyComponent = {
   getBody: function (el, data) {
     var boundingBox = data.boundingBox;
     var position = el.getAttribute('position');
+    var angularVelocity = data.angularVelocity;
     var velocity = data.velocity;
 
     var bodyProperties = {
+      angularVelocity: new CANNON.Vec3(rad(angularVelocity.x), rad(angularVelocity.y),
+                                       rad(angularVelocity.z)),
       mass: data.mass,
       position: new CANNON.Vec3(position.x, position.y, position.z),
       shape: new CANNON.Box(new CANNON.Vec3(boundingBox.x, boundingBox.y, boundingBox.z)),
@@ -112,10 +121,12 @@ var bodyComponent = {
   worldTick: function () {
     var body = this.body;
     var el = this.el;
-    var object3D = this.el.object3D;
-
     el.setAttribute('position', body.position);
-    body.quaternion.copy(object3D.quaternion);
+    el.setAttribute('rotation', {
+      x: deg(body.quaternion.x),
+      y: deg(body.quaternion.y),
+      z: deg(body.quaternion.z)
+    });
   }
 };
 
