@@ -16,13 +16,26 @@ var worldComponent = {
 
   init: function () {
     var self = this;
+    var el = this.el;
     var world = this.world = new CANNON.World();
+
+    // Artificially bubble physics-world events to entity.
+    ['beginContact', 'endContact'].forEach(function (eventName) {
+      world.addEventListener(eventName, function (event) {
+        el.emit('physics-' + eventName, {
+          bodyA: event.bodyA.el,
+          bodyB: event.bodyB.el,
+          target: event.target,
+          bubbles: false
+        });
+      });
+    });
 
     var fixedTimeStep = 1.0 / 60.0;
     var maxSubSteps = 3;
 
     // Add simulation loop.
-    this.el.addBehavior(function (time) {
+    el.addBehavior(function (time) {
       if (self.lastTime !== undefined){
         var timeChange  = (time - self.lastTime) / 1000;
         world.step(fixedTimeStep, timeChange, maxSubSteps);
@@ -111,7 +124,21 @@ var bodyComponent = {
     };
 
     body = new CANNON.Body(bodyProperties);
+
+    // Attach A-Frame stuff.
     body.aframeUpdate = this.worldTickBehavior;
+    body.el = el;
+
+    // Artificially bubble physics-body event to entity.
+    body.addEventListener('collide', function (event) {
+      el.emit('physics-collide', {
+        body: event.body,
+        contact: event.contact,
+        target: event.target,
+        bubbles: false
+      });
+    });
+
     return body;
   },
 

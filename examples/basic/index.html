@@ -11,7 +11,8 @@
     <a-scene physics-world="">
       <a-entity mixin="box" position="0 10 -10"></a-entity>
       <a-entity id="left-box" mixin="box" position="-2.1 1 -10"></a-entity>
-      <a-entity mixin="box" physics-body="angularVelocity: 0 0 60" position="2 1 -10"></a-entity>
+      <a-entity mixin="box" physics-body="angularVelocity: 0 0 60"
+                position="2 1 -10"></a-entity>
 
       <a-entity mixin="box" physics-body="mass: 1; velocity: 0 0 -100"
                 position="2 3 50"></a-entity>
@@ -26,12 +27,28 @@
     </a-scene>
 
     <script>
-      document.querySelector('a-scene').addEventListener('loaded', function () {
-        var boxPhysics = document.getElementById('left-box').components['physics-body'];
+      var scene = document.querySelector('a-scene');
+      scene.addEventListener('loaded', function () {
+        var box = document.getElementById('left-box');
+
+        // Apply impulse;
         setTimeout(function () {
-          boxPhysics.applyImpulse({ x: 50, y: 2, z: 5 },
-                                  { x: 0.5, y: 0, z: 0 });
-        }, 5000);
+          var impulse = { x: 50, y: 2, z: 5 };
+          var point = { x: 0.5, y: 0, z: 0 };
+          box.components['physics-body'].applyImpulse(impulse, point);
+        }, 2500);
+
+        // Change color on collision.
+        scene.addEventListener('physics-beginContact', function (event) {
+          if (event.detail.bodyA === box) {
+            box.setAttribute('material', 'color', '#166678');
+          }
+        });
+        scene.addEventListener('physics-endContact', function (event) {
+          if (event.detail.bodyB === box) {
+            box.setAttribute('material', 'color', '#F08A5D');
+          }
+        });
       });
     </script>
   </body>

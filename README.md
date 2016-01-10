@@ -57,6 +57,10 @@ Object.keys(components).forEach(function (componentName) {
 | mass            | (in kg)               | number | 1             |
 | velocity        | (in m/s)              | vec3   | 0 0 0         |
 
+| Event Name | Description
+| ---------- | -----------
+| collide    | Emitted when entity collides with another entity. Event contains `contact`.
+
 ##### applyImpulse (impulseVec3, positionVec3)
 
 Applies an impulse (indicated by `impulseVec3`) at the body's local point
@@ -74,3 +78,8 @@ hitMeBody.applyImpulse({ x: 10, y: 0, z: 0 }, { x: -1, y: 1, z: 0 });
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | gravity  | vec3        | 0 -9.8 0      |
+
+| Event Name   | Description
+| ----------   | -----------
+| beginContact | Emitted when an entity in the world begins contact with another entity. Event contains `bodyA` and `bodyB`.
+| endContact   | Emitted when an entity in the world ends contact with another entity. Event contains `bodyA` and `bodyB`.

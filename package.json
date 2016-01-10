@@ -55,6 +55,6 @@
     "webpack": "^1.12.9"
   },
   "dependencies": {
-    "cannon": "^0.6.2"
+    "cannon": "schteppe/cannon.js#022e8ba53fa83abf0ad8a0e4fd08623123838a17"
   }
 }
