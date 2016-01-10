@@ -1,11 +1,11 @@
 {
-  "name": "aframe-example-component",
+  "name": "aframe-physics-components",
   "version": "1.0.0",
-  "description": "Example component for A-Frame VR.",
+  "description": "Physics components for A-Frame VR.",
   "main": "index.js",
   "scripts": {
     "dev": "budo examples/main.js --dir examples --port 8000 --live --open",
-    "dist": "webpack browser.js dist/aframe-example-component.js && webpack -p browser.js dist/aframe-example-component.min.js",
+    "dist": "webpack browser.js dist/aframe-physics-components.js && webpack -p browser.js dist/aframe-physics-components.min.js",
     "postpublish": "npm run dist",
     "preghpages": "npm run build && rm -rf gh-pages && cp -r examples gh-pages",
     "ghpages": "npm run preghpages && ghpages -p gh-pages",
@@ -14,11 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ngokevin/aframe-component-boilerplate.git"
+    "url": "git+https://github.com/ngokevin/aframe-physics-components.git"
   },
   "keywords": [
     "aframe",
     "aframe-component",
+    "aframe-physics-component",
+    "aframe-physics-components",
+    "aframe-physics-components",
+    "aframe-physics",
     "layout",
     "aframe-vr",
     "vr",
@@ -29,9 +33,9 @@
   "author": "Kevin Ngo <me@ngokevin.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ngokevin/aframe-component-boilerplate/issues"
+    "url": "https://github.com/ngokevin/aframe-physics-components/issues"
   },
-  "homepage": "https://github.com/ngokevin/aframe-component-boilerplate#readme",
+  "homepage": "https://github.com/ngokevin/aframe-physics-components#readme",
   "devDependencies": {
     "aframe-core": "^0.1.0",
     "browserify": "^12.0.1",
@@ -49,5 +53,8 @@
     "karma-sinon-chai": "^1.1.0",
     "mocha": "^2.3.4",
     "webpack": "^1.12.9"
+  },
+  "dependencies": {
+    "cannon": "^0.6.2"
   }
 }
