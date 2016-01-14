@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script src="../build.js"></script>
+  </head>
+  <body>
+    <a-assets>
+      <a-mixin id="box" geometry="primitive: box" material="color: #166678"
+                        physics-body="mass: 0.5; boundingBox: 2 2 2">
+      </a-mixin>
+    </a-assets>
+
+    <a-scene physics-world="">
+      <a-entity mixin="box" position="0 2 -10"></a-entity>
+
+      <a-entity id="ground" geometry="primitive: box; depth: 10; height: 0.1; width: 10"
+                material="color: #2E3837"
+                physics-body="mass: 0; boundingBox: 10 0.1 10" position="0 0 -10"></a-entity>
+    </a-scene>
+  </body>
+</html>
