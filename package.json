@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/ngokevin/aframe-physics-components#readme",
   "devDependencies": {
-    "aframe-core": "^0.1.0",
+    "aframe": "aframevr/aframe#dev",
     "browserify": "^12.0.1",
     "browserify-css": "^0.8.3",
     "budo": "^7.1.0",
