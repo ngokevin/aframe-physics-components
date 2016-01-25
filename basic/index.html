@@ -9,21 +9,28 @@
     </a-assets>
 
     <a-scene physics-world="">
+      <a-entity id="sky"
+                geometry="primitive: sphere; radius: 100"
+                material="color: #74DEED; shader: flat"
+                scale="1 1 -1"></a-entity>
+      <a-entity id="ground"
+                geometry="primitive: box; depth: 50; height: 0.1; width: 50"
+                material="color: #2E3837"
+                physics-body="mass: 0; boundingBox: 50 0.1 50" position="0 0 -10"></a-entity>
+
       <a-entity mixin="box" position="0 10 -10"></a-entity>
       <a-entity id="left-box" mixin="box" position="-2.1 1 -10"></a-entity>
       <a-entity mixin="box" physics-body="angularVelocity: 0 0 60"
                 position="2 1 -10"></a-entity>
-
-      <a-entity mixin="box" physics-body="mass: 1; velocity: 0 0 -100"
+      <a-entity id="bullet-box" mixin="box" physics-body="mass: 1; velocity: 0 0 -100"
                 position="2 3 50"></a-entity>
 
-      <a-entity geometry="primitive: sphere; radius: 100"
-                material="color: #74DEED; shader: flat"
-                scale="1 1 -1"></a-entity>
-
-      <a-entity geometry="primitive: box; depth: 10; height: 0.1; width: 10"
-                material="color: #2E3837"
-                physics-body="mass: 0; boundingBox: 10 0.1 10" position="0 0 -10"></a-entity>
+      <a-entity id="player" physics-body="mass: 100; boundingBox: 0.5 1.8 0.5"
+                            position="0 5 0">
+        <a-entity id="camera" position="0 1.8 0">
+          <a-entity camera look-controls wasd-controls></a-entity>
+        </a-entity>
+      </a-entity>
     </a-scene>
 
     <script>
