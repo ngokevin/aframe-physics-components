@@ -2,6 +2,8 @@
 
 > Depends on [aframe#dev](https://github.com/aframevr/aframe/tree/dev) branch.
 
+> This work will be moved into aframe soon. For now, it is an experimental playground.
+
 Physics components for [A-Frame](https://aframe.io) VR using [cannon.js](http://schteppe.github.io/cannon.js/).
 
 ![physics2](https://cloud.githubusercontent.com/assets/674727/12221506/a6345502-b752-11e5-8d9c-3a7245d24994.gif)
