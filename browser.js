@@ -6,7 +6,7 @@
   }
 
   // Register all components here.
-  var components = require('./index').components;
+  var components = require('./src/index').components;
 
   Object.keys(components).forEach(function (name) {
     if (AFRAME.aframeCore) {
