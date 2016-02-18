@@ -1,5 +1,6 @@
 var CANNON = require('cannon');
 var coordinates = AFRAME.utils.coordinates;
+var diff = AFRAME.utils.diff;
 
 var rad = THREE.Math.degToRad;
 var deg = THREE.Math.radToDeg;
@@ -87,8 +88,15 @@ var BodyComponent = {
     });
   },
 
-  update: function () {
+  update: function (oldData) {
     if (!this.world) { return; }
+    var diffData = diff(this.data, oldData);
+
+    if ('velocity' in diffData) {
+      this.body.velocity.x = diffData.velocity.x;
+      this.body.velocity.y = diffData.velocity.y;
+      this.body.velocity.z = diffData.velocity.z;
+    }
   },
 
   applyImpulse: function (forceVec3, pointVec3) {
@@ -143,6 +151,10 @@ var BodyComponent = {
     var body = this.body;
     var el = this.el;
     el.setAttribute('position', body.position);
+
+    // Don't rotate camera around.
+    if (this.el.components.camera) { return; }
+
     el.setAttribute('rotation', {
       x: deg(body.quaternion.x),
       y: deg(body.quaternion.y),
@@ -250,5 +262,6 @@ var materialComponent = {
 
 module.exports.components = {
   'physics-body': BodyComponent,
-  'physics-world': WorldComponent
+  'physics-world': WorldComponent,
+  'wasd-physics-controls': require('./wasd-physics-controls')
 };

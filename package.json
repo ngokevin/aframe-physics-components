@@ -2,7 +2,7 @@
   "name": "aframe-physics-components",
   "version": "1.0.2",
   "description": "Physics components for A-Frame VR.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "browserify examples/main.js -o examples/build.js",
     "dev": "budo examples/main.js:build.js --dir examples --port 8000 --live --open",
@@ -39,7 +39,6 @@
   "devDependencies": {
     "aframe": "aframevr/aframe#dev",
     "browserify": "^12.0.1",
-    "browserify-css": "^0.8.3",
     "budo": "^7.1.0",
     "chai": "^3.4.1",
     "chai-shallow-deep-equal": "^1.3.0",
