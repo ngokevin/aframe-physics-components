@@ -6,7 +6,7 @@
   "scripts": {
     "build": "browserify examples/main.js -o examples/build.js",
     "dev": "budo examples/main.js:build.js --dir examples --port 8001 --live --open",
-    "dist": "webpack index.js dist/aframe-physics-component.js && webpack -p index.js dist/aframe-physics-component.min.js",
+    "dist": "webpack src/index.js dist/aframe-physics-component.js && webpack -p src/index.js dist/aframe-physics-component.min.js",
     "postpublish": "npm run dist",
     "preghpages": "npm run build && rm -rf gh-pages && cp -r examples gh-pages",
     "ghpages": "npm run preghpages && ghpages -p gh-pages",
