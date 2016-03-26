@@ -3,7 +3,7 @@ var MAX_DELTA = 0.2;
 /**
  * Control an entity with WASD keys.
  */
-module.exports = {
+AFRAME.registerComponent('wasd-physics-controls', {
   dependendencies: ['physics-body'],
 
   schema: {
@@ -123,4 +123,4 @@ module.exports = {
     direction.applyEuler(rotation);
     return direction;
   }
-};
+});

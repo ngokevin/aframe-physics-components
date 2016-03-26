@@ -1,4 +1,5 @@
 var CANNON = require('cannon');
+require('./wasd-physics-controls');
 var coordinates = AFRAME.utils.coordinates;
 var diff = AFRAME.utils.diff;
 
@@ -6,7 +7,7 @@ var rad = THREE.Math.degToRad;
 var deg = THREE.Math.radToDeg;
 
 // CANNON.World component.
-var WorldComponent = {
+AFRAME.registerComponent('physics-world', {
   schema: {
     gravity: { type: 'vec3', default: { x: 0, y: -9.82, z: 0 } }
   },
@@ -53,10 +54,10 @@ var WorldComponent = {
     }
     this.lastTime = time;
   }
-};
+});
 
 // CANNON.Body component.
-var BodyComponent = {
+AFRAME.registerComponent('physics-body', {
   dependencies: ['position'],
 
   schema: {
@@ -161,10 +162,10 @@ var BodyComponent = {
       z: deg(body.quaternion.z)
     });
   }
-};
+});
 
 // CANNON.Material component.
-var materialComponent = {
+AFRAME.registerComponent('physics-material', {
   dependencies: ['physics-body'],
 
   schema: {
@@ -258,10 +259,4 @@ var materialComponent = {
       z: deg(body.quaternion.z)
     });
   }
-};
-
-module.exports.components = {
-  'physics-body': BodyComponent,
-  'physics-world': WorldComponent,
-  'wasd-physics-controls': require('./wasd-physics-controls')
-};
+});
