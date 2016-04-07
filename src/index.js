@@ -76,22 +76,27 @@ AFRAME.registerComponent('physics-body', {
     var self = this;
     var sceneEl = this.el.sceneEl;
 
-    this.tickWorldBound = this.tickWorld.bind(this);
-
-    // Wait for scene to load to initialize physics world.
-    sceneEl.addEventListener('loaded', function () {
+    var run = function() {
       if (!('physics-world' in sceneEl.components)) {
         console.warn('physics-world must be specified on scene for physics to work.');
       }
       var world = self.world = sceneEl.components['physics-world'].world;
       var body = self.body = self.getBody(self.el, self.data);
       world.add(body);
-    });
+    };
+
+    this.tickWorldBound = this.tickWorld.bind(this);
+
+    if (sceneEl.hasLoaded) {
+      run();
+    } else {
+      sceneEl.addEventListener('loaded', run)
+    };
   },
 
   update: function (oldData) {
     if (!this.world) { return; }
-    var diffData = diff(this.data, oldData);
+    var diffData = diff(this.data, oldData || this.data);
 
     if ('velocity' in diffData) {
       this.body.velocity.x = diffData.velocity.x;
