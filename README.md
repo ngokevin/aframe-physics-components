@@ -30,7 +30,7 @@ Install and use by directly including the [browser files](dist):
 Install via NPM:
 
 ```bash
-npm install aframe-physics-component
+npm install aframe-physics-components
 ```
 
 Then register and use.
