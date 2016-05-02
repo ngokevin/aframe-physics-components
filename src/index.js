@@ -1,15 +1,18 @@
 var CANNON = require('cannon');
 require('./wasd-physics-controls');
+require('./CannonDebugRenderer');
 var coordinates = AFRAME.utils.coordinates;
 var diff = AFRAME.utils.diff;
 
 var rad = THREE.Math.degToRad;
 var deg = THREE.Math.radToDeg;
+var cannonDebugRenderer = null;
 
 // CANNON.World component.
 AFRAME.registerComponent('physics-world', {
   schema: {
-    gravity: { type: 'vec3', default: { x: 0, y: -9.82, z: 0 } }
+    gravity: { type: 'vec3', default: { x: 0, y: -9.82, z: 0 } },
+    debug: { default: false }
   },
 
   init: function () {
@@ -30,6 +33,12 @@ AFRAME.registerComponent('physics-world', {
         });
       });
     });
+
+    var scene = this.el.sceneEl.object3D;
+
+    if (this.data.debug) {
+      cannonDebugRenderer = new THREE.CannonDebugRenderer(scene, world);
+    }
   },
 
   update: function (oldData) {
@@ -51,6 +60,9 @@ AFRAME.registerComponent('physics-world', {
       world.bodies.forEach(function (body) {
         if (body.tickWorld) { body.tickWorld(); }
       });
+
+      if (cannonDebugRenderer)
+        cannonDebugRenderer.update();
     }
     this.lastTime = time;
   }
