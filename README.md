@@ -1,5 +1,7 @@
 ## aframe-physics-components
 
+> Also check out Don McCurdy's physics implementation in [aframe-extras](https://github.com/donmccurdy/aframe-extras).
+
 Experimental physics components for [A-Frame](https://aframe.io) VR using [cannon.js](http://schteppe.github.io/cannon.js/).
 
 ![physics2](https://cloud.githubusercontent.com/assets/674727/12221506/a6345502-b752-11e5-8d9c-3a7245d24994.gif)
